@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+            text-align: right;
+        }
+        section{
+            text-align:center;
+            padding-top: 150px;
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 100%;
+            padding-bottom: 200px;
+            align-items:flex-end;
+            opacity: .75;
+            
+        }
+        footer{
+            text-align: center;
+            padding-top: 50px;
+            padding-left: 250px;
+        }
+        form{
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 200px;
+            text-align: center;
+
+        }
+        .f{
+            outline: none;
+            background: transparent;
+            border-top: 1px;
+            border-left: 1px;
+            border-right: 1px;
+            padding: 3px;
+        }
+        body{
+            background-image: url("signup1.png");
+            background-repeat: no-repeat;   
+        }
+    </style>
+
+</head>
+
+<body>
+    <section>
+    <h1> Register here</h1>
+    <form1><form class="for" action="./signup1.php" method="post">
+        Name
+        <input type="text" name="name" id="name" placeholder="Enter your name" class="f" onkeyup="verify()"><br><br>
+        Gmail
+        <input type="text" gmail="my_number" id="gmail" placeholder="Enter your gmail" class="f"
+            name="gmail" onkeyup="verify()"></span><br><br>
+        Password
+        <input type="password" password="my password" id="password" name="password" placeholder="Enter Password"
+            pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+            title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+            class="f" required onblur="verify_p()" /><span style="color: red;" id=_password></span><br><br>
+        Confirm Password
+        <input type="password" password="my password" id="confirmpassword" name="confirmpassword"
+            placeholder="Confirm your Password" class="f" required onfocus="verify_cp()" onfocus="verify()"/><span style="color: red;"
+            id="_confirmpassword"  ></span><br><br></form1>
+            <footer><input type="button" id="btn" value="Next"  disabled=true onclick="location.replace('signup2.html')"><br><b>Next</b></footer>
+    </for>
+    </section>
+    <script>
+        function verify() {
+            let name = document.getElementById("name");
+            let gmail = document.getElementById("gmail");
+            let p = document.getElementById("password");
+            let cp = document.getElementById("confirmpassword");
+            if(!(name.value==""||gmail.value==""||verify_p())){
+                console.log(cp);
+                document.getElementById("btn").disabled=false;
+            }
+        }
+        function verify_p() {
+            let p = document.getElementById("password");
+                let lcl = /[a-z]/g;
+                let ucl = /[A-Z]/g;
+                let dig = /[0-9]/g;
+                if (!p.value.match(lcl)) {
+                    document.getElementById("_password").innerHTML = "*Password must contain atleast 1 lowercase letter";
+                    return false;
+                } else if (!p.value.match(ucl)) {
+                    document.getElementById("_password").innerHTML = "*Password must contain atleast 1 uppercase letter";
+                    return false;
+                } else if (!p.value.match(dig)) {
+                    document.getElementById("_password").innerHTML = "*Password must contain atleast 1 digit";
+                    return false;
+                } else if (p.value.length < 10) {
+                    document.getElementById("_password").innerHTML = "*Password must be atleast 10 characters";
+                    return false;
+                } else {
+                    document.getElementById("_password").innerHTML = null;
+                    return true;
+                }
+            }
+            function verify_cp() {
+                let cp = document.getElementById("confirmpassword");
+                let p = document.getElementById("password");
+                if (cp.value == p.value) {
+                    document.getElementById("_confirmpassword").innerHTML = null;
+                    document.getElementById("btn").disabled=false;
+                    verify();
+                } else {
+                    document.getElementById("_confirmpassword").innerHTML = "*Passwords don't match";
+                }
+            }
+    </script>
+    </body>
+    
+            

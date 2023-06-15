@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+            /* padding-left: 250pxpx; */
+        }
+        .f{
+            outline: none;
+            background: transparent;
+            border-top: 1px;
+            border-left: 1px;
+            border-right: 1px;
+            padding: 3px;
+        }
+        section{
+            text-align:center;
+            padding-top: 150px;
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 100%;
+            padding-bottom: 200px;
+            align-items:flex-end;
+            opacity: .75;
+            
+        }
+        body{
+            background-image: url("signup1.png");
+            background-repeat: no-repeat;
+        }
+
+    </style>
+
+</head>
+
+<body>
+    <section><h3>Personal Information</h3>
+    <form class="for" action="./signup1.php" method="post">
+        Date Of Birth
+        <input type="date" date="Mydate" id="date" name="date" placeholder="Enter your date of birth" class="f" onfocus="verify()"><br><br>
+        Phone Number
+        <input type="tel" number="Mynumber" id="phone" name="number" placeholder="Enter your Phone number"
+            class="f" onkeypress="numeric()" ><span style="color: red;" id="ph"></span><br><br>
+    
+            <a class="o"input type = "button" href="signup2.html"><b>Prev</b></a><br>
+        <input type="submit"  onclick="alert('Submitted!');" name="Submit" id="submit" class="btn btn-primary" disabled=true/><span style="color: red;" id="incomplete"></span> <br><br>
+        <a class="back" href="index.html">Back</a>
+    </form>
+    </section>
+    <script>
+          function verify() {
+            let dob = document.getElementById("date");
+            let phone = document.getElementById("phone");
+            let lcl = /[a-z]/g;
+            let ucl = /[A-Z]/g;
+            let dig = /[0-9]/g;
+            if (!(dob.value == "" || phone.value == "")) {
+                document.getElementById("submit").disabled = false;
+            } 
+          }
+
+          function numeric() {
+            let phone = document.getElementById("phone");
+                if (isNaN(phone.value)) {
+                    document.getElementById("ph").innerHTML = "*Please enter valid phone number";
+                } else {
+                    document.getElementById("ph").innerHTML = null;
+                   verify();
+                }
+            }
+    </script>
+</body>

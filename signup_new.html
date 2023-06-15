@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        a {
+            text-decoration: none;
+            color: black;
+            text-align: right;
+        }
+
+        section {
+            text-align: center;
+            padding-top: 150px;
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 100%;
+            padding-bottom: 200px;
+            align-items: flex-end;
+            opacity: .75;
+
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 50px;
+            padding-left: 250px;
+        }
+
+        form {
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 200px;
+            text-align: center;
+
+        }
+
+        .f {
+            outline: none;
+            background: transparent;
+            border-top: 1px;
+            border-left: 1px;
+            border-right: 1px;
+            padding: 3px;
+        }
+
+        body {
+            background-image: url("signup1.png");
+            background-repeat: no-repeat;
+        }
+    </style>
+
+</head>
+
+<body>
+    <section>
+        <h1> Register here</h1>
+        <form class="for" action="./signup_check.php" method="post">
+            <div id="one" >
+                Name
+                <input type="text" name="name" id="name" placeholder="Enter your name" class="f"
+                    onkeyup="verify1()"><br><br>
+                Gmail
+                <input type="text" gmail="my_number" id="gmail" placeholder="Enter your gmail" class="f" name="gmail"
+                    onkeyup="verify1()"></span><br><br>
+                Password
+                <input type="password" password="my password" id="password" name="password" placeholder="Enter Password"
+                    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
+                    class="f" required onblur="verify_p()" /><span style="color: red;" id=_password></span><br><br>
+                Confirm Password
+                <input type="password" password="my password" id="confirmpassword" name="confirmpassword"
+                    placeholder="Confirm your Password" class="f" required onfocus="verify_cp()"
+                     /><span style="color: red;" id="_confirmpassword"></span><br><br>
+                     
+                <footer><a href="index.php">Back</a>
+                    <input type="button" id="btn1" value="Next" disabled=true onclick="page2()"><br><b></b>
+                </footer>
+            </div>
+            <div id="two" hidden=true>  
+                <h3>Demographic information</h3>
+                <b>Address</b><br><br>
+                Street
+                <input type="text" street="Mystreet" id="street" name="street" placeholder="Enter your Street name"
+                    class="f" onkeyup="verify2()"><br><br>
+                Area
+                <input type="text" Area="Myarea" id="area" name="area" placeholder="Enter your Area name" class="f"
+                    onkeyup="verify2()"><br><br>
+                Landmark
+                <input type="text" Landmark="Mylandmark" id="landmark" name="landmark" placeholder="Enter your Landmark"
+                    class="f" onkeyup="verify2()"><br><br>
+                Pincode
+                <input type="text" pincode="Mypincode" id="pincode" name="pincode" placeholder="Enter your Pincode"
+                    class="f" onkeyup="verify2()" onblur="numeric1()"><span style="color: red;" id="pin"></span><br><br>
+                City
+                <input type="text" city="Mycity" id="city" name="city" placeholder="Enter your city name" class="f"
+                    onkeyup="verify2()"><br><br>
+                State
+                <input type="text" state="Mystate" id="state" name="state" placeholder="Enter your State name" class="f"
+                    onkeyup="verify2()"><br><br>
+                <input class="o" input type="button" value="Previous" onclick="page2p()"><b></b></a>
+                <input class="t" input type="button" id="btn2" value="Next" onclick='page3()' disabled=true><b></b>
+            </div>
+            <div id="three" hidden=true>
+                <h3>Personal Information</h3>
+                Date Of Birth
+                <input type="date" date="Mydate" id="date" name="date" placeholder="Enter your date of birth" class="f"
+                    onfocus="verify3()"><br><br>
+                Phone Number
+                <input type="tel" number="Mynumber" id="phone" name="number" placeholder="Enter your Phone number"
+                    class="f" onkeypress="numeric2()"><span style="color: red;" id="ph"></span><br><br>
+
+                <input class="o" input type="button" value="Previous" onclick="page3p()"><b></b></a><br><br>
+                <input type="submit" onclick="alert('Verifying information...');" name="Submit" id="submit" class="btn btn-primary"
+                    disabled=true /><span style="color: red;" id="incomplete"></span> <br><br>
+                <a class="back" href="index.php">Back</a>
+            </div>
+        </form>
+    </section>
+    <script>
+        function page2() {
+            document.getElementById("one").hidden = true;
+            document.getElementById("two").hidden = false;
+        }
+
+        function page2p(){
+            document.getElementById("one").hidden =false ;
+            document.getElementById("two").hidden = true ;
+        }
+
+        function page3(){
+            document.getElementById("two").hidden=true;
+            document.getElementById("three").hidden=false;
+        }
+
+        function page3p(){
+            document.getElementById("two").hidden=false;
+            document.getElementById("three").hidden=true;
+        }
+
+
+        function verify1() {
+            let name = document.getElementById("name");
+            let gmail = document.getElementById("gmail");
+            let p = document.getElementById("password");
+            let cp = document.getElementById("confirmpassword");
+            if (!(name.value == "" || gmail.value == "" )|| verify_p()) {
+                console.log(cp);
+                document.getElementById("btn1").disabled = false;
+            }
+        }
+
+        function verify2() {
+            let street = document.getElementById("street");
+            let area = document.getElementById("area");
+            let landmark = document.getElementById("landmark");
+            let pincode = document.getElementById("pincode");
+            let city = document.getElementById("city");
+            let state = document.getElementById("state");
+            let lcl = /[a-z]/g;
+            let ucl = /[A-Z]/g;
+            let dig = /[0-9]/g;
+            if (!(street.value == "" || area.value == "" || landmark.value == "" || pincode == "" || city.value == "" || state.value == "") && numeric1()) {
+                console.log(pincode.value);
+                document.getElementById("btn2").disabled = false;
+            }
+        }
+
+        function verify3() {
+            let dob = document.getElementById("date");
+            let phone = document.getElementById("phone");
+            let lcl = /[a-z]/g;
+            let ucl = /[A-Z]/g;
+            let dig = /[0-9]/g;
+            if (!(dob.value == "" || phone.value == "")) {
+                document.getElementById("submit").disabled = false;
+            }
+        }
+
+        function numeric2() {
+            let phone = document.getElementById("phone");
+            if (isNaN(phone.value)) {
+                document.getElementById("ph").innerHTML = "*Please enter valid phone number";
+            } else {
+                document.getElementById("ph").innerHTML = null;
+                verify3();
+            }
+        }
+
+        function numeric1() {
+            let pincode = document.getElementById("pincode");
+            if (isNaN(pincode.value)) {
+                document.getElementById("pin").innerHTML = "*Please enter valid pincode";
+                return false;
+            } else {
+                document.getElementById("pin").innerHTML = null;
+                return true;
+            }
+
+        }
+
+        function verify_p() {
+            let p = document.getElementById("password");
+            let lcl = /[a-z]/g;
+            let ucl = /[A-Z]/g;
+            let dig = /[0-9]/g;
+            if (!p.value.match(lcl)) {
+                document.getElementById("_password").innerHTML = "*Password must contain atleast 1 lowercase letter";
+                return false;
+            } else if (!p.value.match(ucl)) {
+                document.getElementById("_password").innerHTML = "*Password must contain atleast 1 uppercase letter";
+                return false;
+            } else if (!p.value.match(dig)) {
+                document.getElementById("_password").innerHTML = "*Password must contain atleast 1 digit";
+                return false;
+            } else if (p.value.length < 10) {
+                document.getElementById("_password").innerHTML = "*Password must be atleast 10 characters";
+                return false;
+            } else {
+                document.getElementById("_password").innerHTML = null;
+                return true;
+            }
+        }
+        function verify_cp() {
+            let cp = document.getElementById("confirmpassword");
+            let p = document.getElementById("password");
+            if (cp.value == p.value) {
+                document.getElementById("_confirmpassword").innerHTML = null;
+                verify1();
+            } else {
+                document.getElementById("_confirmpassword").innerHTML = "*Passwords don't match";
+                document.getElementById("btn1").disabled = true;
+            }
+        }
+    </script>
+</body>

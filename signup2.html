@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+    <style>
+        a{
+            text-decoration: none;
+            color: black;
+            align-items: left;
+        }
+        section{
+            text-align:center;
+            padding-top: 150px;
+            background-color: rgb(228, 230, 231);
+            width: 300px;
+            height: 100%;
+            align-items:flex-end;
+            opacity: .85;
+        }
+        .f{
+            outline: none;
+            background: transparent;
+            border-top: 1px;
+            border-left: 1px;
+            border-right: 1px;
+            padding: 3px;
+        }
+        body{
+            background-image: url("signup1.png");
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <h3>Demographic information</h3>
+    <form class="for" action="./signup1.php" method="post">
+    <b>Address</b><br><br>
+    Street
+    <input type="text" street="Mystreet" id="street" name="street" placeholder="Enter your Street name"
+        class="f" onkeyup="verify()"><br><br>
+    Area
+    <input type="text" Area="Myarea" id="area" name="area" placeholder="Enter your Area name" class="f" onkeyup="verify()"><br><br>
+    Landmark
+    <input type="text" Landmark="Mylandmark" id="landmark" name="landmark" placeholder="Enter your Landmark"
+        class="f" onkeyup="verify()"><br><br>
+    Pincode
+    <input type="text" pincode="Mypincode" id="pincode" name="pincode" placeholder="Enter your Pincode"
+        class="f" onkeyup="verify()" onblur="numeric()" ><span style="color: red;" id="pin"></span><br><br>
+    City
+    <input type="text" city="Mycity" id="city" name="city" placeholder="Enter your city name" class="f" onkeyup="verify()"><br><br>
+    State
+    <input type="text" state="Mystate" id="state" name="state" placeholder="Enter your State name"
+        class="f" onkeyup="verify()"><br><br>
+        <a class="o" input type = "button" href="signup1.html"><b>Previous</b></a>
+        <input class="t" input type="button" id="btn" onclick='location.replace("signup3.html")' disabled=true><b>Next</b>
+    </form>
+    </section>
+    <script>
+        function verify() {
+            let street = document.getElementById("street");
+            let area = document.getElementById("area");
+            let landmark = document.getElementById("landmark");
+            let pincode = document.getElementById("pincode");
+            let city = document.getElementById("city");
+            let state = document.getElementById("state");
+            let lcl = /[a-z]/g;
+            let ucl = /[A-Z]/g;
+            let dig = /[0-9]/g;
+            if (!( street.value == "" || area.value == "" ||landmark.value==""|| pincode == "" || city.value == "" || state.value == "")&&numeric()) {
+                document.getElementById("btn").disabled = false;
+            }
+        }
+
+        function numeric() {
+            let pincode = document.getElementById("pincode");
+                if (isNaN(pincode.value)) {
+                    document.getElementById("pin").innerHTML = "*Please enter valid pincode";
+                    return false;
+                } else {
+                    document.getElementById("pin").innerHTML = null;
+                    return true;
+                }
+               
+            }
+    </script>
+</body>
+    
+        
